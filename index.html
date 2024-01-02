@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radical Wreckage</title>
+    <link rel="stylesheet" href="radicalWreckage.css">
+    <link rel="stylesheet" href="radicalWreckage.js">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:wght@900&display=swap');
+    </style>
+</head>
+<body>
+    <header>
+        <section class="grid1">
+            <div class="nadiv">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="index.html">HOME</a>
+                        </li>
+                        <li>
+                            <a href="contact_us.html">CONTACT US</a>
+                        </li>
+                        <li>
+                            <a href="hours_location.html">HOURS & LOCATION</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="logo_image">
+                <img id="logo" src="images\radical_image.png" alt="radical_wreckage_logo">
+            </div>
+            <div class="portrait_of_jerrad_mouse_jensen">
+                <img id="jerrad" src="images\jerrad_mouse_jensen_image.png" alt="portrait_of_jerrad_mouse_jensen">
+            </div>
+            
+        </section>
+    </header>
+
+    <div class="content">
+        <section class="searchbox">
+            <form action="" method="post">
+                <div>
+                <H1>FIND A CAR:</H1>
+                </div>
+                <br>
+                <br>
+                <div class="makes" id="makes_div">
+                    <h2>Select AUTO MAKER(s):</h2>
+                </div>
+                <br>
+                <br>
+                <div class="model" id="modelDiv">
+                </div>
+                <br>
+                <br>
+
+                <div class="yearsa" id="yearsDiv">    
+                </div>
+            </form>
+        </section>
+    </div>
+    <footer>
+    <section class="grid2">
+        <div class="footer_box1">
+            <div class="social_fb_icon">
+                <a href="https://www.facebook.com/"><img id="fb" src="images\fb_svg.jpg" alt="facebook_icon"></a>
+            </div>
+            <div class="contact_us">
+                <a href="contact_us.html"><button class="footer_contact_us">CONTACT US</button></a>
+            </div>
+            <div class="conclusion1"><p>&copy; Bowers inc. 2024</p>
+            </div>
+        </div>
+    </section>
+    </footer>
+
+
+    <script>
+        function displayCar() {
+            // TODO: write me!
+            // You will do it just like addCarYears except you also have to 
+            // get the year from the year selector before you can call fetch
+            // with 3 arguments http://127.0.0.1/car/${makeValue}/${modelValue}/${yearValue}
+        }
+        function addCarYears() {
+            const selectedMake = document.querySelector('input[name="carMake"]:checked');
+            var selectElement = document.getElementById("modelSelector");
+            // Get the selected option
+            var selectedOption = selectElement.options[selectElement.selectedIndex];
+            var selectedModel = selectedOption.text;
+            if (selectedMake) {
+                const makeValue = selectedMake.value;
+                fetch(`http://127.0.0.1:5000/car/${makeValue}/${selectedModel}`) // Update the URL to your endpoint
+                    .then(response => response.json())
+                    .then(data => {
+                        // Handle the JSON data here
+                        console.log('Car Years:', data);
+
+                        // Example: Create checkboxes dynamically
+                        const  yearsDiv = document.getElementById('yearsDiv');
+                        yearsDiv.innerHTML = '<H3>SELECT A YEAR:</H3>';
+                        const yearSelector = document.createElement('select');
+                        yearSelector.id = 'yearSelector';
+                        yearSelector.onchange = displayCar;
+                        yearSelector.onclick = displayCar;
+                        data.forEach(year => {
+                                // add options to modelSelector
+                                const option = document.createElement('option');
+                                option.innerText = year;
+                                yearSelector.appendChild(option);
+                        });
+                        yearsDiv.appendChild(yearSelector);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        }
+        function radioMakes() {
+            const selectedMake = document.querySelector('input[name="carMake"]:checked');
+            if (selectedMake) {
+                const makeValue = selectedMake.value;
+
+                // Send a request to the server to retrieve data from the database
+                fetch(`http://127.0.0.1:5000/car/models/${makeValue}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Car Models:', data);
+                        // Display the result
+                        const modelDiv = document.getElementById('modelDiv');
+                        modelDiv.innerHTML = '<H2>Select Model:</H2>';
+                        const modelSelector = document.createElement('select');
+                        modelSelector.onchange = addCarYears;
+                        modelSelector.onclick = addCarYears;
+                        modelSelector.id = 'modelSelector';
+                        //const modelSelector.onclick = function to populate years which you need to write;
+                        data.forEach(model => {
+                            // add options to modelSelector
+                            const option = document.createElement('option');
+                            option.innerText = model;
+                            modelSelector.appendChild(option);
+                        });
+                        modelDiv.appendChild(modelSelector);
+                    })
+                    .catch(error => console.error('Error:', error));
+            } else {
+                alert('Please select a car make.');
+            }
+        }
+        function addCarMakes() {
+            fetch('http://127.0.0.1:5000/car/makes')  // Update the URL to your endpoint
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the JSON data here
+                    console.log('Car Makes:', data);
+
+                    // Example: Create checkboxes dynamically
+                    const checkboxContainer = document.getElementById('makes_div');
+                    checkboxContainer.innerHTML = '';
+
+                    data.forEach(make => {
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'radio';
+                        checkbox.name = 'carMake';
+                        checkbox.value = make;
+                        checkbox.onclick = radioMakes; 
+
+                        const label = document.createElement('label');
+                        label.appendChild(checkbox);
+                        label.appendChild(document.createTextNode(make));
+
+                        checkboxContainer.appendChild(label);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+        addCarMakes();
+        
+    </script>
+</body>
+</html>

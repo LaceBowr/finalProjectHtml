@@ -1,0 +1,130 @@
+/* reset */
+
+*{box-sizing: border-box;
+padding: .5rem;
+margin: 0;
+}
+
+/*typography*/
+    html{font-size: 18px;
+}
+    header{
+        align-items: center;
+        justify-content: space-evenly;
+}
+    section.grid1{
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+}
+    .nadiv{
+    
+    color: gray;
+    padding: .10rem;
+    background-color:greenyellow;
+    margin: 0;
+    width: 12rem;
+    height: 12rem;
+    align-content: start;
+
+
+}
+
+    a:hover{
+    color: gray;
+    text-decoration: none;
+}
+ul li{
+    text-decoration: none;
+}
+    .logo_image{
+    size: 10%;
+
+}
+    body{
+    color: white;
+    background-color: black ;
+    font-family: 'Roboto', sans-serif;
+    justify-content: center;
+}
+
+    div.content{
+        display: block;
+        justify-content: center;
+    }
+    label, input, select{ 
+        color: black;
+        font-family: 'Permanent Marker', cursive;
+        letter-spacing: 4px;
+        margin: 0 12px 0 5px;
+        width: 100%;
+}
+
+    .makes select{
+        color: black;
+    }
+.searchbox {
+    margin: 0 10rem 0 1rem;
+    background-color: grey;
+    width: 100%;
+}
+
+    h1, h2, h3, p{
+        color: greenyellow;
+        margin: 0 0 12px 15px;
+
+}
+footer{
+    justify-content: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 10%;
+    justify-content: center;
+    align-items: start;
+
+}
+.footer_box1{
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    align-items: center;
+    gap: 10rem;
+    margin: 25%;
+    justify-content: space-evenly;
+}
+#logo {
+    margin: 0 0 0 -5px;
+    width: 652.5px;
+    height: 219px;
+}
+#jerrad {
+    width: 203px;
+    height: 218.833px;
+}
+
+#fb{
+    width: 137px;
+    height: 130.25px;
+}
+.social_fb_icon{
+    size: 25%;
+    border-radius: 5px 5px;
+}
+footer button{
+    font-family: 'Permanent Marker', cursive;
+    background-color: greenyellow;
+    border-radius: 5px 5px;
+
+}
+footer button:hover{
+    color:gray ;
+    background-color:white ;
+}
+button.footer_contact_us{
+    justify-items: center;
+}
+.conclusion{
+    display: inline-block;
+}
+
+@media screen {
+    
+}
