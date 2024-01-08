@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Radical Wreckage</title>
     <link rel="stylesheet" href="radicalWreckage.css">
+    <link rel="stylesheet" href="radicalWreckage.js">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:wght@900&display=swap');
     </style>
@@ -35,35 +36,31 @@
             </div>
         </section>
     </header>
+        <div class="heading" id="heading3">
+        <H1>We want to meet your roadside needs, so please contact us (if voicemail is reached - we will contact you within 1 business day). 
+            <br>
+            <br>
+             <em>We meet via appointment ONLY.</em></H1>
+        </div>
+        <br>
+        <div class="content3">
+            <section class="location_info">
+                
+                <div class="address" id="address">
+                    <h2 class="street_address">Address:  
+                    <h3 class="address">355 North Center St.</h3>
+                    <h3 class="city_state">Elsinore, Utah</h3>
+                    <h2 class="text">Text: 
+                    <h3 class="name_text">(Jerrad "Mouse" Jensen) 1(435)-201-1111</h3>
+                    <h2 class="email">Email:</h2> 
+                    <h3 class="contact_email">radical_mouse.jj@gmail.com</h3>
+                </div>
+                <br>            
+            </section>
+        </div>
+        <br>
 
-    <h1>Please contact us if you want to know details on any vehicles we have: </h1>
 
-    <div class="content2">
-        <section class="send_message2">
-            <div class="email" id="email">
-                <h2>Subject:</h2>
-                <input type="text" id="subject" required> <label for="subject">Required to submit</label>
-            </div>
-            <br>
-            <h2> Email:
-                <label for="email"></label>
-                <input type="email" id="email" name="email" />
-            </h2>
-            <br>
-            <div class="message" id="message">
-                <h2>Message:</h2>
-            <label for="send_message"></label>
-                        <textarea name="send_message" id="send_message" cols="60" rows="10">(700 words max)</textarea> 
-            </div>
-            <br>
-            <br>
-            <button class="button2" id="contact_button">SEND EMAIL</button>
-
-            <div id="success" style="display: none;" color: purple;>
-                <h5>Your message has been sent successfully!</h5>
-                </div>             
-        </section>
-    </div>
 
     <footer>
         <section class="grid2">
@@ -80,21 +77,5 @@
         </section>
     </footer>
 
-    <script>
-        function sendEmail() {
-            // Get values from form fields
-            var subject = document.getElementById('subject').value;
-            var body = document.getElementById('send_message').value;
-
-            // Create mailto link
-            var mailtoLink = 'mailto:radicalmouse.jj@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-            console.log(mailtoLink)
-            // Open the link
-            window.location.href = mailtoLink;
-        }
-        document.getElementById('contact_button').addEventListener('click', sendEmail);
-        // Assume email sending logic was successful.
-        document.getElementById("success").style.display = "block";
-    </script>
 </body>
 </html>

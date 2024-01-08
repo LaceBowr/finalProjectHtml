@@ -1,26 +1,36 @@
 /* reset */
 
-*{box-sizing: border-box;
-padding: .5rem;
-margin: 0;
+* {
+    box-sizing: border-box;
+    padding: .5rem;
+    margin: 0;
 }
 
 /*typography*/
-    html{font-size: 18px;
+html {
+    font-size: 18px;
 }
-    header{
-        align-items: center;
-        justify-content: space-evenly;
+
+header {
+    list-style: none;
+    list-style-type: square;
+    align-items: center;
+    justify-content: space-evenly;
 }
-    section.grid1{
-        display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
+
+
+section.grid1 {
+    order: -1;
+    justify-content: auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
 }
-    .nadiv{
+
+.nadiv {
     
     color: gray;
     padding: .10rem;
-    background-color:greenyellow;
+    background-color: greenyellow;
     margin: 0;
     width: 12rem;
     height: 12rem;
@@ -29,51 +39,66 @@ margin: 0;
 
 }
 
-    a:hover{
+a:hover {
     color: gray;
     text-decoration: none;
 }
-ul li{
+
+ul li {
     text-decoration: none;
 }
-    .logo_image{
+
+.logo_image {
     size: 10%;
 
 }
-    body{
+
+body {
     color: white;
-    background-color: black ;
+    background-color: black;
     font-family: 'Roboto', sans-serif;
+    justify-content: center;
+    max-width: 960px;
+
+}
+
+div.content,
+div.content2 {
+    margin: 0 5% 0 25%;
+    display: block;
     justify-content: center;
 }
 
-    div.content{
-        display: block;
-        justify-content: center;
-    }
-    label, input, select{ 
-        color: black;
-        font-family: 'Permanent Marker', cursive;
-        letter-spacing: 4px;
-        margin: 0 12px 0 5px;
-        width: 100%;
+label,
+input,
+select,
+textarea {
+    color: black;
+    font-family: 'Permanent Marker', cursive;
+    letter-spacing: 4px;
+    margin: 0 .75rem 0 .33rem;
+    width: 85%;
 }
 
-    .makes select{
-        color: black;
-    }
-.searchbox {
+.makes select {
+    color: black;
+}
+
+form {
     margin: 0 10rem 0 1rem;
     background-color: grey;
-    width: 100%;
+    width: 90%;
 }
 
-    h1, h2, h3, p{
-        color: greenyellow;
-        margin: 0 0 12px 15px;
+h2,
+h3,
+p {
+    color: greenyellow;
+    margin: 0 0 12px 15px;
 
 }
-footer{
+
+footer {
     justify-content: center;
     justify-content: space-evenly;
     width: 100%;
@@ -82,49 +107,242 @@ footer{
     align-items: start;
 
 }
-.footer_box1{
+
+.footer_box1,
+.footer_box2 {
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr;
+    grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
     gap: 10rem;
     margin: 25%;
     justify-content: space-evenly;
 }
+
 #logo {
     margin: 0 0 0 -5px;
     width: 652.5px;
     height: 219px;
 }
+
 #jerrad {
     width: 203px;
     height: 218.833px;
 }
 
-#fb{
+#fb {
     width: 137px;
     height: 130.25px;
 }
-.social_fb_icon{
+
+.social_fb_icon {
     size: 25%;
     border-radius: 5px 5px;
 }
-footer button{
+
+footer button,
+.button2 {
     font-family: 'Permanent Marker', cursive;
     background-color: greenyellow;
     border-radius: 5px 5px;
+    width: 200px;
+    height: 75px;
 
 }
-footer button:hover{
-    color:gray ;
-    background-color:white ;
+
+footer button:hover {
+    color: white;
+    background-color: gray;
 }
-button.footer_contact_us{
-    justify-items: center;
+
+#contact_btn,
+#find_btn {
+    width: 200ox;
+    height: 75px;
 }
-.conclusion{
+
+.conclusion1,
+.conclusion2 {
     display: inline-block;
 }
+.images{
+    width:25%;
+}
 
-@media screen {
-    
+
+
+@media screen and (max-width: 750px){
+
+    header h1 {
+        
+        margin-top: 3.5rem
+    }
+
+    section.grid1{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        padding: 0;
+        gap: 1rem;
+        
+    }
+    #logo {
+        width: 217.5px;
+        height: 73px;
+        margin: 0 0 0 -100px;
+
+    }
+
+    .nadiv {
+
+        color: gray;
+        padding: .10rem;
+        background-color: greenyellow;
+        margin: 0;
+        width: 9rem;
+        height: 10rem;
+        align-content: start;
+    }
+    section.grid1{
+        order: -1;
+    }
+
+    footer button,
+    .button2 {
+        font-family: 'Permanent Marker', cursive;
+        background-color: greenyellow;
+        border-radius: 5px 5px;
+        width: 100px;
+        height: 55px;
+
+    }
+
+    footer button:hover {
+        color: white;
+        background-color: gray;
+    }
+
+    #contact_btn,
+    #find_btn {
+        width: 100ox;
+        height: 55px;
+    }
+
+    #fb {
+        width: 64px;
+        height: 65px;
+    }
+
+    footer {
+        justify-content: center;
+        align-items: start;
+
+    }
+
+    .footer_box1,
+    .footer_box2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 1rem;
+        margin: 25%;
+        justify-content: space-evenly;
+    }
+
+}
+@media screen and (max-width: 600px){
+
+    header h1 {
+        
+        margin-top: 3.5rem
+    }
+
+    section.grid1{
+        display: grid;
+        grid-template-columns: 100%;
+        
+    }
+    #logo {
+        margin: 0 0 0 -5px;
+        width: 217.5px;
+        height: 73px;
+        margin: 0 0 0 0;
+
+    }
+
+    .nadiv {
+
+        color: gray;
+        padding: .10rem;
+        background-color: greenyellow;
+        margin: 0;
+        width: 9rem;
+        height: 10rem;
+        align-content: start;
+    }
+    section.grid1{
+        order: -1;
+    }
+
+    footer button,
+    .button2 {
+        font-family: 'Permanent Marker', cursive;
+        background-color: greenyellow;
+        border-radius: 5px 5px;
+        width: 100px;
+        height: 55px;
+
+    }
+
+    footer button:hover {
+        color: white;
+        background-color: gray;
+    }
+
+    #contact_btn,
+    #find_btn {
+        width: 100ox;
+        height: 55px;
+    }
+
+    #fb {
+        width: 64px;
+        height: 65px;
+    }
+
+    footer {
+        justify-content: center;
+        align-items: start;
+
+    }
+
+    .footer_box1,
+    .footer_box2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 1rem;
+        margin: 25%;
+        justify-content: space-evenly;
+    }
+
+}
+
+/*CSS FOR CONTACT_US (PAGE 2) & (PAGE 3)*/
+.content3 {
+    background-color: gray;
+    max-width: 960px;
+    margin: 0 5% 0 25%;
+}
+
+h1 #heading3 {
+    justify-content: center;
+    color: white;
+    margin-left: 100px;
+
+}
+
+.street_address,
+.text,
+.email {
+    color: white;
+
 }
