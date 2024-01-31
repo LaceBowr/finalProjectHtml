@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radical Wreckage</title>
+<title>Radical Wreckage</title>
     <link rel="stylesheet" href="radicalWreckage.css">
     <link rel="stylesheet" href="radicalWreckage.js">
     <style>
@@ -25,38 +25,53 @@
                         <li>
                             <a href="hours_location.html">HOURS & LOCATION</a>
                         </li>
+                        
                     </ul>
                 </nav>
             </div>
             <div class="logo_image">
-                <img id="logo" src="images\radical_image.png" alt="radical_wreckage_logo">
+                <img id="logo" src="images/radical_image.png" alt="radical_wreckage_logo">
             </div>
             <div class="portrait_of_jerrad_mouse_jensen">
-                <img id="jerrad" src="images\jerrad_mouse_jensen_image.png" alt="portrait_of_jerrad_mouse_jensen">
+                <img id="jerrad" src="images/jerrad_mouse_jensen_image.png" alt="portrait_of_jerrad_mouse_jensen">
             </div>
         </section>
     </header>
         <div class="heading" id="heading3">
-        <H1>We want to meet your roadside needs, so please contact us (if voicemail is reached - we will contact you within 1 business day). 
+        <h1>We want to meet your roadside needs, so please contact us (if voicemail is reached - we will contact you within 1 business day). 
             <br>
             <br>
-             <em>We meet via appointment ONLY.</em></H1>
+             <em>We meet via appointment ONLY.</em></h1>
         </div>
         <br>
         <div class="content3">
+            <fieldset>
             <section class="location_info">
                 
                 <div class="address" id="address">
-                    <h2 class="street_address">Address:  
+                    <div>
+                    <h1 class="street_address">Address:</h1>
+                    </div>  
+                    <div>
                     <h3 class="address">355 North Center St.</h3>
+                    </div>
+                    <div>
                     <h3 class="city_state">Elsinore, Utah</h3>
-                    <h2 class="text">Text: 
-                    <h3 class="name_text">(Jerrad "Mouse" Jensen) 1(435)-201-1111</h3>
-                    <h2 class="email">Email:</h2> 
-                    <h3 class="contact_email">radical_mouse.jj@gmail.com</h3>
+                    </div>
+                    <div>
+                    <h2 class="text">Text:</h2> 
+                    </div>
+                    <div>
+                    <h3 class="name_text">Jerrad "Mouse" Jensen: 1(435)-201-1111</h3>
+                    </div>
+                    <div><h2 class="email">Email:</h2> 
+                    </div>
+                    <div><h3 class="contact_email">radical_mouse.jj@gmail.com</h3>
+                    </div>
                 </div>
                 <br>            
             </section>
+            </fieldset>
         </div>
         <br>
 
@@ -66,16 +81,28 @@
         <section class="grid2">
             <div class="footer_box2">
                 <div class="social_fb_icon">
-                    <a href="https://www.facebook.com/"><img id="fb" src="images\fb_svg.jpg" alt="facebook_icon"></a>
+                    <a href="https://www.facebook.com/"><img id="fb" src="images/fb_svg.jpg" alt="facebook_icon"></a>
                 </div>
                 <div class="find_a_car">
-                    <a href="index.html"><button class="footer_find_a_car" id="find_btn">FIND A CAR:</button></a>
+                   <button class="footer_find_a_car" id="find_btn">FIND A CAR:</button>
                 </div>
                 <div class="conclusion2"><p>&copy; Bowers inc. 2024</p>
                 </div>
             </div>
         </section>
     </footer>
+<script>
+    // Get the button element by its ID
+    var button = document.getElementById('find_btn');
 
+// Add a click event listener to the button
+button.addEventListener('click', function() {
+// Set the new URL you want to navigate to
+var newUrl = 'index.html';
+
+// Change the window location to the new URL
+window.location.href = newUrl;
+});
+</script>
 </body>
 </html>

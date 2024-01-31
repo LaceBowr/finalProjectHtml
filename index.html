@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Radical Wreckage</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radical Wreckage</title>
+<title>Radical Wreckage</title>
     <link rel="stylesheet" href="radicalWreckage.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:wght@900&display=swap');
@@ -24,14 +25,15 @@
                         <li>
                             <a href="hours_location.html">HOURS & LOCATION</a>
                         </li>
+                        
                     </ul>
                 </nav>
             </div>
             <div class="logo_image">
-                <img id="logo" src="images\radical_image.png" alt="radical_wreckage_logo">
+                <img src="images/radical_image.png" alt="radical_wreckage_logo" id="logo">
             </div>
             <div class="portrait_of_jerrad_mouse_jensen">
-                <img id="jerrad" src="images\jerrad_mouse_jensen_image.png" alt="portrait_of_jerrad_mouse_jensen">
+                <img src="images/jerrad_mouse_jensen_image.png" alt="portrait_of_jerrad_mouse_jensen" id="jerrad">
             </div>
             
         </section>
@@ -41,28 +43,29 @@
 
     <div class="content">
         <section class="searchbox">
-            <form action="" method="post">
-                <div>
-                <h2>FIND A CAR:</h2>
-                </div>
-                <br>
-                <br>
-                <div class="makes" id="makes_div">
-                    <h2>Select AUTO MAKER(s):</h2>
-                </div>
-                <br>
-                <br>
-                <div class="model" id="modelDiv">
-                </div>
-                <br>
-                <br>
-                <div class="years" id="yearsDiv">    
-                </div>
-                <br>
-                <br>
-                <div class="images" id="imageContainer">
-                </div>
-
+            <form>
+                <fieldset>
+                    <div>
+                    <h2>FIND A CAR:</h2>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="makes" id="makes_div">
+                        <h2>Select AUTO MAKER(s):</h2>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="model" id="modelDiv">
+                    </div>
+                    <br>
+                    <br>
+                    <div class="years" id="yearsDiv">    
+                    </div>
+                    <br>
+                    <br>
+                    <div class="images" id="imageContainer">
+                    </div>
+            </fieldset>
             </form>
         </section>
     </div>
@@ -70,10 +73,10 @@
     <section class="grid2">
         <div class="footer_box1">
             <div class="social_fb_icon">
-                <a href="https://www.facebook.com/"><img id="fb" src="images\fb_svg.jpg" alt="facebook_icon"></a>
+                <a href="https://www.facebook.com/"><img id="fb" src="images/fb_svg.jpg" alt="facebook_icon"></a>
             </div>
             <div class="contact_us">
-                <a href="contact_us.html"><button class="footer_contact_us" id="contact_btn">CONTACT US</button></a>
+                <button class="footer_contact_us" id="contact_btn">CONTACT US</button>
             </div>
             <div class="conclusion1"><p>&copy; Bowers inc. 2024</p>
             </div>
@@ -81,6 +84,17 @@
     </section>
     </footer>
     <script>
+        // Get the button element by its ID
+        var button = document.getElementById('contact_btn');
+
+        // Add a click event listener to the button
+        button.addEventListener('click', function() {
+        // Set the new URL you want to navigate to
+        var newUrl = 'contact_us.html';
+
+        // Change the window location to the new URL
+        window.location.href = newUrl;
+        });
         function addCarYears() {
             const selectedMake = document.querySelector('input[name="carMake"]:checked');
             var selectElement = document.getElementById("modelSelector");
@@ -203,7 +217,7 @@
                     });
             }
         }
-        function handleImageData(data) {
+        async function handleImageData(data) {
             // Assuming data is an array of image URLs
             // You can customize this function based on the actual structure of your data
             const imageContainer = document.getElementById('imageContainer');
@@ -211,15 +225,41 @@
             // Clear previous content
             imageContainer.innerHTML = '';
 
-            // Iterate through the array of image URLs and create image elements
-            data.images.forEach(imageUrl => {
-                const imageElement = document.createElement('img');
-                imageElement.src = imageUrl;
-                // Append the image to the container
-                imageContainer.appendChild(imageElement);
-            });
+            for (let i = 0; i < data.images.length; i++) {
+                // Iterate through the array of image URLs and create image elements
+                let imageUrl = data.images[i];
+                let b64_img = await fetchB64Image(imageUrl);
+                if (b64_img.length > 0) {
+                    let base64Data = "data:image/png;base64," + b64_img;
+                    let imgElement = document.createElement("img");
+                    imgElement.src = base64Data;
+                    document.body.appendChild(imgElement);
+                    imageContainer.appendChild(imgElement);
+                }
+            }
+        }
+        async function fetchB64Image(image_name) {
+            try {
+                let image_url = "http://127.0.0.1:5000/getimage/" + image_name;
+                console.log("Fetching image:", image_url);
+                const response = await fetch(image_url);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                const data = await response.json();
+                console.log('b64 image fetch result:', data.message);
+                if (data.success) {
+                    return data.base64_data;
+                }
+                return "";
+            }
+            catch(error) {
+                console.error('Fetch Error:', error);
+            }
         }
         addCarMakes();
+
+
     </script>
 </body>
 </html>

@@ -148,3 +148,4 @@ function sendEmail() {
     // Open the link
     window.location.href = mailtoLink;
 }
+

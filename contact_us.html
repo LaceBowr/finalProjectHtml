@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Radical Wreckage</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radical Wreckage</title>
+<title>Radical Wreckage</title>
     <link rel="stylesheet" href="radicalWreckage.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:wght@900&display=swap');
@@ -24,14 +25,15 @@
                         <li>
                             <a href="hours_location.html">HOURS & LOCATION</a>
                         </li>
+                        
                     </ul>
                 </nav>
             </div>
             <div class="logo_image">
-                <img id="logo" src="images\radical_image.png" alt="radical_wreckage_logo">
+                <img id="logo" src="images/radical_image.png" alt="radical_wreckage_logo">
             </div>
             <div class="portrait_of_jerrad_mouse_jensen">
-                <img id="jerrad" src="images\jerrad_mouse_jensen_image.png" alt="portrait_of_jerrad_mouse_jensen">
+                <img id="jerrad" src="images/jerrad_mouse_jensen_image.png" alt="portrait_of_jerrad_mouse_jensen">
             </div>
         </section>
     </header>
@@ -39,15 +41,16 @@
     <h1>Please contact us if you want to know details on any vehicles we have: </h1>
 
     <div class="content2">
+    <fieldset>
         <section class="send_message2">
-            <div class="email" id="email">
-                <h2>Subject:</h2>
-                <input type="text" id="subject" required> <label for="subject">Required to submit</label>
+<div class="email" id="email">
+            <h2>Subject:</h2>
+            <input type="text" id="subject" required> <label for="subject">Required to submit</label>
             </div>
             <br>
             <h2> Email:
                 <label for="email"></label>
-                <input type="email" id="email" name="email" />
+                    <input type="email" id="email" name="email" />
             </h2>
             <br>
             <div class="message" id="message">
@@ -58,29 +61,39 @@
             <br>
             <br>
             <button class="button2" id="contact_button">SEND EMAIL</button>
-
-            <div id="success" style="display: none;" color: purple;>
-                <h5>Your message has been sent successfully!</h5>
-                </div>             
+           
         </section>
+    </fieldset>
     </div>
 
     <footer>
-        <section class="grid2">
-            <div class="footer_box2">
-                <div class="social_fb_icon">
-                    <a href="https://www.facebook.com/"><img id="fb" src="images\fb_svg.jpg" alt="facebook_icon"></a>
+            <section class="grid2">
+                <div class="footer_box2">
+                    <div class="social_fb_icon">
+                        <a href="https://www.facebook.com/"><img id="fb" src="images/fb_svg.jpg" alt="facebook_icon"></a>
+                    </div>
+                    <div class="find_a_car">
+                       <button class="footer_find_a_car" id="find_btn">FIND A CAR:</button>
+                    </div>
+                    <div class="conclusion2"><p>&copy; LaceBowers inc. 2024</p>
+                    </div>
                 </div>
-                <div class="find_a_car">
-                    <a href="index.html"><button class="footer_find_a_car" id="find_btn">FIND A CAR:</button></a>
-                </div>
-                <div class="conclusion2"><p>&copy; Bowers inc. 2024</p>
-                </div>
-            </div>
-        </section>
+            </section>
     </footer>
 
     <script>
+        // Get the button element by its ID
+        var button = document.getElementById('find_btn');
+
+        // Add a click event listener to the button
+        button.addEventListener('click', function() {
+        // Set the new URL you want to navigate to
+        var newUrl = 'index.html';
+
+        // Change the window location to the new URL
+        window.location.href = newUrl;
+        });
+        
         function sendEmail() {
             // Get values from form fields
             var subject = document.getElementById('subject').value;
