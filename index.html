@@ -228,13 +228,15 @@
             for (let i = 0; i < data.images.length; i++) {
                 // Iterate through the array of image URLs and create image elements
                 let imageUrl = data.images[i];
-                let b64_img = await fetchB64Image(imageUrl);
-                if (b64_img.length > 0) {
-                    let base64Data = "data:image/png;base64," + b64_img;
-                    let imgElement = document.createElement("img");
-                    imgElement.src = base64Data;
-                    document.body.appendChild(imgElement);
-                    imageContainer.appendChild(imgElement);
+                if (imageUrl.length > 0) {
+                    let b64_img, type = await fetchB64Image(imageUrl);
+                    if (b64_img.length > 0) {
+                        let base64Data = "data:image/"+image_type+";base64," + b64_img;
+                        let imgElement = document.createElement("img");
+                        imgElement.src = base64Data;
+                        document.body.appendChild(imgElement);
+                        imageContainer.appendChild(imgElement);
+                    }
                 }
             }
         }
@@ -249,7 +251,7 @@
                 const data = await response.json();
                 console.log('b64 image fetch result:', data.message);
                 if (data.success) {
-                    return data.base64_data;
+                    return data.base64_data, data.image_type;
                 }
                 return "";
             }
