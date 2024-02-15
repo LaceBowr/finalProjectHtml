@@ -116,10 +116,11 @@
                         yearSelector.id = 'yearSelector';
                         yearSelector.onchange = displayCar;
                         yearSelector.onclick = displayCar;
-                        data.forEach(year => {
+                        data.forEach(year_tuple => {
                                 // add options to modelSelector
                                 const option = document.createElement('option');
-                                option.innerText = year;
+                                option.name = year_tuple[1];
+                                option.innerText = year_tuple[0];
                                 yearSelector.appendChild(option);
                         });
                         yearsDiv.appendChild(yearSelector);
@@ -199,10 +200,13 @@
 
             var selectedModel = selectedOption.text;
             var selectedYear = selectedYearOption.text;
+            //We dumped the sql db id onto the year option name
+            var selectedCarID = selectedYearOption.name;
 
             if (selectedMake) {
                 const makeValue = selectedMake.value;
-                fetch(`http://127.0.0.1:5000/car/${makeValue}/${selectedModel}/${selectedYear}`) // Update the URL to your endpoint
+                //fetch(`http://127.0.0.1:5000/car/${makeValue}/${selectedModel}/${selectedYear}`) // Update the URL to your endpoint
+                fetch(`http://127.0.0.1:5000/car/${selectedCarID}`)
                     .then(response => response.json())
                     .then(data => {
                         // Handle the JSON data here
@@ -210,7 +214,7 @@
                         data.forEach(car => {
                                 handleImageData(car)
                         });
-                        yearsDiv.appendChild(yearSelector);
+                        //yearsDiv.appendChild(yearSelector);
                     })
                     .catch(error => {
                         console.error('Error:', error);
@@ -229,7 +233,9 @@
                 // Iterate through the array of image URLs and create image elements
                 let imageUrl = data.images[i];
                 if (imageUrl.length > 0) {
-                    let b64_img, type = await fetchB64Image(imageUrl);
+                    let results = await fetchB64Image(imageUrl);
+                    let b64_img = results[0];
+                    let image_type = results[1];
                     if (b64_img.length > 0) {
                         let base64Data = "data:image/"+image_type+";base64," + b64_img;
                         let imgElement = document.createElement("img");
@@ -249,11 +255,13 @@
                     throw new Error('Failed to fetch data');
                 }
                 const data = await response.json();
-                console.log('b64 image fetch result:', data.message);
                 if (data.success) {
-                    return data.base64_data, data.image_type;
+                    console.log('b64 image fetch success, result:', data.message);
+                    return [data.base64_data, data.image_type];
+                } else {
+                    console.log('b64 image fetch failed result:', data.message);
+                    return ["", ""];
                 }
-                return "";
             }
             catch(error) {
                 console.error('Fetch Error:', error);
